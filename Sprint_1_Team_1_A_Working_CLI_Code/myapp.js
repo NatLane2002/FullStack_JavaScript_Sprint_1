@@ -1,7 +1,7 @@
 /*************************
  * File Name: myapp.js
  * Purpose: The main routines to start the initialization app
- * 
+ *
  * Commands:
  * see usage.txt file
  *
@@ -39,7 +39,7 @@ switch (myArgs[0]) {
     case 't':
         if(DEBUG) console.log(myArgs[0], ' - generate a user token');
         tokenApp();
-        break;  
+        break;
     case '--help':
     case '--h':
     default:
