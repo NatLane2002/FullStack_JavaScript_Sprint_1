@@ -17,7 +17,7 @@ const { configjson } = require('./templates')
 function displayConfig() {
     if(DEBUG) console.log('conigf.displayConfig()');
     fs.readFile(__dirname + "/json/config.json", (error, data) => {
-        if(error) throw error; // should write a log event for the error, github issue #12     
+        if(error) throw error; // should write a log event for the error, github issue #12
         console.log(JSON.parse(data));
     });
     myEmitter.emit('log', 'config.displayConfig()', 'INFO', 'display config.json displayed');
@@ -39,7 +39,7 @@ function setConfig() {
 
     let match = false;
     fs.readFile(__dirname + "/json/config.json", (error, data) => {
-        if(error) throw error;         
+        if(error) throw error;
         if(DEBUG) console.log(JSON.parse(data));
         let cfg = JSON.parse(data);
         for(let key of Object.keys(cfg)){
@@ -85,7 +85,7 @@ function configApp() {
     case '--h':
     default:
         fs.readFile(__dirname + "/views/config.txt", (error, data) => {
-            if(error) throw error;              
+            if(error) throw error;
             console.log(data.toString());
         });
     }
@@ -93,4 +93,4 @@ function configApp() {
 
 module.exports = {
     configApp,
-  }
+}

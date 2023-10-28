@@ -59,14 +59,14 @@ function newToken(username) {
     newToken.expires = `${format(expires, 'yyyy-MM-dd HH:mm:ss')}`;
 
     fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
-        if(error) throw error; 
+        if(error) throw error;
         let tokens = JSON.parse(data);
         tokens.push(newToken);
         userTokens = JSON.stringify(tokens);
     
         fs.writeFile(__dirname + '/json/tokens.json', userTokens, (err) => {
             if (err) console.log(err);
-            else { 
+            else {
                 console.log(`New token ${newToken.token} was created for ${username}.`);
                 myEmitter.emit('log', 'token.newToken()', 'INFO', `New token ${newToken.token} was created for ${username}.`);
             }
@@ -76,11 +76,12 @@ function newToken(username) {
     return newToken.token;
 }
 
+// Different from token2.js file
 function updateToken(argv) {
     if(DEBUG) console.log('token.updateToken()');
     if(DEBUG) console.log(argv);
     fs.readFile(__dirname + '/json/tokens.json', 'utf-8', (error, data) => {
-        if(error) throw error; 
+        if(error) throw error;
         let tokens = JSON.parse(data);
         tokens.forEach(obj => {
             if(obj.username === argv[3]) {
@@ -121,8 +122,8 @@ function tokenApp() {
       break;
   case '--list':
       if(DEBUG) console.log('token.tokenList() --list');
-      // tokenList();
-      break; 
+      tokenList();
+      break;
   case '--new':
       if (myArgs.length < 3) {
           console.log('invalid syntax. node myapp token --new [username]')
@@ -144,7 +145,7 @@ function tokenApp() {
           console.log('invalid syntax. node myapp token --fetch [username]')
           myEmitter.emit('log', 'token.fetchRecord() --fetch', 'WARNING', 'invalid syntax, usage displayed');
       } else {
-          // fetchRecord(myArgs[2]);
+          fetchRecord(myArgs[2]);
       }
       break;
   case '--search':
@@ -155,7 +156,7 @@ function tokenApp() {
   case '--h':
   default:
       fs.readFile(__dirname + "/views/token.txt", (error, data) => {
-          if(error) throw error;              
+          if(error) throw error;
           console.log(data.toString());
       });
   }
