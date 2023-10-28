@@ -17,12 +17,38 @@ app.get('/', (req, res) => {
 app.get('/count', async (req, res) => {
   var theCount = await tokenCount();
   res.setHeader('Content-type', 'text/html');
-  res.write(`<!doctype html><html><body>`);
-  res.write(`Token count is ${theCount}</br>`);
+  res.write(`<!doctype html><html><head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin-top: 375px;
+    }
+    h2 {
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+      padding: 10px 20px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      margin: 10px;
+      transition: all 0.3s ease;
+  }
+    a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+  </head><body>`);
+  res.write(`<h2>Token count is ${theCount}</h2>`);
   res.write(`<a href="http://localhost:3000">[home]</a>`);
   res.write(`</body></html>`);
   res.end();
 });
+
 
 app.get('/new', (req, res) => {
   console.log('new token requested');
@@ -30,11 +56,38 @@ app.get('/new', (req, res) => {
 });
 
 app.post('/new', (req, res) => {
-    var theToken = newToken(req.body.username);
-    res.setHeader('Content-type', 'text/html');
-    res.write(`${req.body.username} token is ${theToken}</br>`);
-    res.write(`<a href="http://localhost:3000">[home]</a>`);
-    res.end();
+  var theToken = newToken(req.body.username);
+  res.setHeader('Content-type', 'text/html');
+  res.write(`<!doctype html><html><head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+      margin-top: 375px;
+    }
+    h2 {
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: #333;
+      padding: 10px 20px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      margin: 10px;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      background-color: #333;
+      color: #fff;
+    }
+  </style>
+  </head><body>`);
+  res.write(`<h2>${req.body.username} token is ${theToken}</h2>`);
+  res.write(`<a href="http://localhost:3000">[home]</a>`);
+  res.write(`</body></html>`);
+  res.end();
 });
 
 // Start the server
