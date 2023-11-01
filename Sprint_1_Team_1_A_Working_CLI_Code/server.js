@@ -27,7 +27,7 @@ const server = http.createServer(async (req, res) => {
                 `);
                 res.end();
                 });
-            } 
+            }
             else {
                 path += "newtoken.html";
                 res.statusCode = 200;
